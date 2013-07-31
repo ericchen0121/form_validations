@@ -1,0 +1,24 @@
+<ul class='errors'>
+<% if @new_event.errors.any? %>
+	<% @new_event.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+</ul>
+
+<% else %>
+	<% if @new_event %>
+		<%=@new_event.organizer_name %>, congrats on creating this event for <%=@new_event.date %>: 
+		<%=@new_event.title %><br>
+	<% end %>
+
+	Invitees will be encouraged to contact you at <%=@new_event.organizer_email %>
+<% end %>
+
+
+<form action='/events/create' method='post'>
+	<label>Event name</label><input type='text' name='title' placeholder='Big event bash'><br>
+	<label>Event date</label><input id='datepicker' type='text' name='date' placeholder='2013-01-22'/><br>
+	<label>Organizer name</label><input type='text' name='organizer_name' placeholder='JH Hoogstadt'/><br>
+	<label>Organizer email</label><input type='text' name='organizer_email' placeholder='steel@bod.com'/><br>
+	<input type='submit' name='submit'/>
+</form>
